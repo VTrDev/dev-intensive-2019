@@ -11,4 +11,14 @@ object Utils {
 //        return Pair(firstName, lastName)
         return firstName to lastName
     }
+
+    fun transliteration(payload: String, divider: String = " "): String { // HW 1:18
+        return "Makeev_Mihail"
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun toInitials(firstName: String?, lastName: String?): String? {
+        return "MM"
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
