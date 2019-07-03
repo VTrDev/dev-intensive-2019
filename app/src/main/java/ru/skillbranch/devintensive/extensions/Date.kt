@@ -109,7 +109,7 @@ enum class TimeUnits {
         when (value % 10) {
             1 -> return when (units) {
                 SECOND -> "$value секунду"
-                MINUTE -> "$value день"
+                MINUTE -> "$value минуту"
                 HOUR -> "$value час"
                 DAY -> "$value день"
             }
