@@ -8,3 +8,10 @@ fun String.truncate(length: Int = 16): String {
     return if (str.length <= length) str
         else this.subSequence(0, length).toString().trimEnd().plus("...")
 }
+
+fun String.stripHtml(): String {
+    return this
+        .replace("<(.|\\n)*?>".toRegex(), "")
+        .replace("&.{2,};".toRegex(), "")
+        .replace("\\s+".toRegex(), " ")
+}
