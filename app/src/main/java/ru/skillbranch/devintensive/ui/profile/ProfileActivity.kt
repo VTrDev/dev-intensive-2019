@@ -4,6 +4,7 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -27,10 +28,12 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var viewFields: Map<String, TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // TODO set custom Theme this before super and setContentView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
+        Log.d("M_ProfileActivity", "onCreate")
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -41,6 +44,12 @@ class ProfileActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
+        viewModel.getTheme().observe(this, Observer { updateTheme(it) })
+    }
+
+    private fun updateTheme(mode: Int) {
+        Log.d("M_ProfileActivity", "updateTheme")
+        delegate.setLocalNightMode(mode)
     }
 
     private fun updateUI(profile: Profile) {
@@ -70,6 +79,10 @@ class ProfileActivity : AppCompatActivity() {
             if (isEditMode) saveProfileInfo()
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
+        }
+
+        btn_switch_theme.setOnClickListener {
+            viewModel.switchTheme()
         }
     }
 
