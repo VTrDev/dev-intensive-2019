@@ -15,3 +15,11 @@ fun String.stripHtml(): String {
         .replace("&.{2,};".toRegex(), "")
         .replace("\\s+".toRegex(), " ")
 }
+
+fun String.isGitHubRepoUrl(): Boolean {
+    val matchResult = "^(https?://)?(www.)?github.com/([A-Za-z0-9-_]{3,})$"
+        .toRegex().find(this) ?: return false
+    return !listOf("enterprise", "features", "topics", "collections",
+        "trending", "events", "marketplace", "pricing", "nonprofit",
+        "customer-stories", "security", "login", "join").contains(matchResult.groupValues[3])
+}

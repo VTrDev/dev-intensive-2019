@@ -4,16 +4,19 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.rangeTo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
+import ru.skillbranch.devintensive.extensions.hideKeyboard
+import ru.skillbranch.devintensive.extensions.isGitHubRepoUrl
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -85,6 +88,19 @@ class ProfileActivity : AppCompatActivity() {
         btn_switch_theme.setOnClickListener {
             viewModel.switchTheme()
         }
+
+        et_repository.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val repoUrl = et_repository.text.toString()
+                wr_repository.error  =
+                    if (repoUrl.isNotEmpty() && !repoUrl.isGitHubRepoUrl()) "Невалидный адрес репозитория"
+                    else ""
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
     }
 
     private fun showCurrentMode(isEdit: Boolean) {
@@ -122,6 +138,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveProfileInfo() {
+        validateProfileInfo()
+
         Profile(
             firstName = et_first_name.text.toString(),
             lastName = et_last_name.text.toString(),
@@ -129,6 +147,12 @@ class ProfileActivity : AppCompatActivity() {
             repository = et_repository.text.toString()
         ).apply {
             viewModel.saveProfileDate(this)
+        }
+    }
+
+    private fun validateProfileInfo() {
+        if (!wr_repository.error.isNullOrEmpty()) {
+            et_repository.text.clear()
         }
     }
 }
