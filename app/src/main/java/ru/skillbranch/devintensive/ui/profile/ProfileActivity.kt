@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.ui.profile
 
+import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -11,13 +12,17 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.extensions.isGitHubRepoUrl
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.repositories.PreferencesRepository
+import ru.skillbranch.devintensive.ui.custom.AvatarPlaceholder
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -62,6 +67,8 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
+
+        setAvatarPlaceholder(Utils.toInitials(profile.firstName, profile.lastName))
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -154,5 +161,23 @@ class ProfileActivity : AppCompatActivity() {
         if (!wr_repository.error.isNullOrEmpty()) {
             et_repository.text.clear()
         }
+    }
+
+    private fun setAvatarPlaceholder(text: String?) {
+        val avatarBackgroundColor =
+            if (PreferencesRepository.getAppTheme() == AppCompatDelegate.MODE_NIGHT_YES)
+                ContextCompat.getColor(this, R.color.color_accent_night)
+            else ContextCompat.getColor(this, R.color.color_accent)
+        iv_avatar.setImageDrawable(AvatarPlaceholder(
+            text,
+            Color.WHITE,
+            avatarBackgroundColor,
+            iv_avatar.drawable.intrinsicWidth,
+            iv_avatar.drawable.intrinsicHeight
+        ))
+
+//        iv_avatar.setImageResource(R.drawable.splash)
+//        iv_avatar.setBorderColor(R.color.color_accent)
+//        iv_avatar.setBorderWidth(5)
     }
 }

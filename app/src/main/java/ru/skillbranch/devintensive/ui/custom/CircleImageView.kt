@@ -1,7 +1,6 @@
 package ru.skillbranch.devintensive.ui.custom
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
@@ -11,6 +10,9 @@ import androidx.annotation.Dimension
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import ru.skillbranch.devintensive.R
+import android.graphics.Bitmap
+import ru.skillbranch.devintensive.extensions.toDp
+import ru.skillbranch.devintensive.extensions.toPx
 
 class CircleImageView @JvmOverloads constructor(
     context: Context,
@@ -73,7 +75,7 @@ class CircleImageView @JvmOverloads constructor(
     private fun paintSetup() {
         borderPaint.color = borderColor
         borderPaint.style = Paint.Style.STROKE
-        borderPaint.strokeWidth = borderWidth.toFloat()
+        borderPaint.strokeWidth = borderWidth
 
         if (drawable != null) {
             var bitmap = drawable.toBitmap()
@@ -85,9 +87,3 @@ class CircleImageView @JvmOverloads constructor(
     }
 
 }
-
-val Float.toPx: Float
-    get() = (this * Resources.getSystem().displayMetrics.density)
-
-val Float.toDp: Int
-    get() = (this / Resources.getSystem().displayMetrics.density).toInt()
