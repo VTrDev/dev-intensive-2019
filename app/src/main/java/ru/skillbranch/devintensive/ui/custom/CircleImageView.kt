@@ -37,7 +37,7 @@ class CircleImageView @JvmOverloads constructor(
             borderWidth = a.getDimension(R.styleable.CircleImageView_cv_borderWidth, DEFAULT_BORDER_WIDTH.toPx)
             a.recycle()
 
-            Log.d("M_CircleImageView", "$borderColor - $borderWidth")
+            // Log.d("M_CircleImageView", "$borderColor - $borderWidth")
         }
     }
 
