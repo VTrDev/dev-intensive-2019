@@ -1,6 +1,7 @@
 package ru.skillbranch.devintensive.models.data
 
 import androidx.annotation.VisibleForTesting
+import ru.skillbranch.devintensive.extensions.format
 import ru.skillbranch.devintensive.extensions.shortFormat
 import ru.skillbranch.devintensive.models.BaseMessage
 import ru.skillbranch.devintensive.models.ImageMessage
@@ -48,7 +49,8 @@ data class Chat(
                 "${user.firstName ?: ""} ${user.lastName ?: ""}",
                 lastMessageShort().first,
                 unreadableMessageCount(),
-                lastMessageDate()?.shortFormat(),
+                //lastMessageDate()?.shortFormat(),
+                lastMessageDate()?.format("dd.MM.yy"),
                 user.isOnline
             )
         } else {
@@ -59,7 +61,8 @@ data class Chat(
                 title,
                 lastMessageShort().first,
                 unreadableMessageCount(),
-                lastMessageDate()?.shortFormat(),
+                //lastMessageDate()?.shortFormat(),
+                lastMessageDate()?.format("dd.MM.yy"),
                 false,
                 ChatType.GROUP,
                 lastMessageShort().second

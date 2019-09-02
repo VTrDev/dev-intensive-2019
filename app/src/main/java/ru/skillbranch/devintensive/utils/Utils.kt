@@ -40,4 +40,9 @@ object Utils {
             return firstName[0].toString().toUpperCase()
         }
     }
+
+    fun getFirstName(fullName: String): String {
+        val parts: List<String>? = fullName?.split(" ", ", ")
+        return if (!parts.isNullOrEmpty()) parts[0] else ""
+    }
 }

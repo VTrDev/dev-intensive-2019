@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.item_chat_single.sv_indicator
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.ChatItem
 import ru.skillbranch.devintensive.models.data.ChatType
+import ru.skillbranch.devintensive.utils.Utils
 
 class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
     companion object {
@@ -89,7 +90,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatA
                 text = item.messageCount.toString()
             }
 
-            tv_message_author_archive.text = item.title
+            tv_message_author_archive.text = Utils.getFirstName("@${item.title}")
 
             tv_message_archive.text = item.shortDescription
 
