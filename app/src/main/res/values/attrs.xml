@@ -13,4 +13,14 @@
     <attr name="colorDivider" format="reference"/>
     <attr name="colorIcon" format="reference"/>
 
+    <attr name="colorActionBarBackground" format="reference"/>
+    <attr name="colorPrimaryBackground" format="reference"/>
+    <attr name="colorChatItemBackground" format="reference"/>
+    <attr name="colorChatItemSwipeBackground" format="reference"/>
+    <attr name="colorChatIndicator" format="reference"/>
+    <attr name="colorChatItemTitle" format="reference"/>
+    <attr name="colorChatItemText" format="reference"/>
+    <attr name="colorChatItemMessageCount" format="reference"/>
+    <attr name="colorChatItemMessageCountBadge" format="reference"/>
+
 </resources>

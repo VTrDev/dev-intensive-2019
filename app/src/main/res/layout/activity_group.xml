@@ -10,7 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:background="?attr/colorActionBarBackground">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -26,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_marginTop="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryBackground">
 
         <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group"

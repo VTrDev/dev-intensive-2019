@@ -9,9 +9,12 @@
     <color name="color_gray">#9CA9BA</color>
     <color name="color_gray_dark">#675F7F</color>
     <color name="color_gray_light">#ECECEC</color>
+    <color name="color_gray_light2">#E5E5E5</color>
+    <color name="color_gray_darkest">#1D1D1D</color>
+    <color name="color_gray_darkest2">#272727</color>
 
     <color name="color_divider_dark">#1F000000</color>
     <color name="color_divider_light">#1FFFFFFF</color>
-    <color name="color_indicator">#581F99</color>
-    <color name="color_green">#4FD149</color>
+    <color name="color_count_badge">#581F99</color>
+    <color name="color_online_indicator">#4FD149</color>
 </resources>

@@ -4,7 +4,7 @@
                 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size"
                 android:padding="@dimen/spacing_normal_16"
-                android:background="@android:color/white">
+                android:background="?attr/colorChatItemBackground">
 
     <ru.skillbranch.devintensive.ui.custom.CircleImageView
             android:id="@+id/iv_avatar_single"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="chat title"
-            android:textColor="@color/color_primary"
+            android:textColor="?attr/colorChatItemTitle"
             android:fontFamily="sans-serif-medium"
             android:textSize="14sp"
             android:layout_toRightOf="@id/iv_avatar_single"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Когда я проходил интенсив, я мало спал"
-            android:textColor="@color/color_gray_dark"
+            android:textColor="?attr/colorChatItemText"
             android:textSize="14sp"
             android:layout_toRightOf="@id/iv_avatar_single"
             android:layout_toLeftOf="@+id/tv_counter_single"
@@ -53,7 +53,7 @@
             android:textSize="10sp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:textColor="@color/color_gray_dark"
+            android:textColor="?attr/colorChatItemText"
             tools:text="18:00"/>
     <TextView
             android:id="@+id/tv_counter_single"
@@ -67,7 +67,7 @@
             android:textSize="10sp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorChatItemMessageCount"
             tools:text="11"/>
 
 </RelativeLayout>

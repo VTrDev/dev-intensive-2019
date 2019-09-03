@@ -18,7 +18,7 @@ data class User (
         val lastActivity = when {
             lastVisit == null -> "Еще не разу не заходил"
             isOnline -> "online"
-            else -> "Последний раз быд ${lastVisit.humanizeDiff()} "
+            else -> "Последний раз был ${lastVisit.humanizeDiff()} "
         }
 
         return UserItem(

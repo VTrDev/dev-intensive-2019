@@ -1,12 +1,16 @@
 package ru.skillbranch.devintensive.ui.group
 
 import android.content.res.ColorStateList
+import android.content.res.TypedArray
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
@@ -17,6 +21,7 @@ import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_group.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
+import ru.skillbranch.devintensive.repositories.PreferencesRepository
 import ru.skillbranch.devintensive.ui.adapters.UserAdapter
 import ru.skillbranch.devintensive.viewmodels.GroupViewModel
 
@@ -25,9 +30,14 @@ class GroupActivity : AppCompatActivity() {
     private lateinit var usersAdapter: UserAdapter
     private lateinit var viewModel: GroupViewModel
 
+    private var colorCloseIconTint = Color.WHITE
+    private var colorChipBackground = Color.WHITE
+    private var colorChipText = Color.WHITE
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
+        initColors()
         initToolbar()
         initViews()
         initViewModel()
@@ -60,6 +70,18 @@ class GroupActivity : AppCompatActivity() {
             true
         } else {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun initColors() {
+        if (PreferencesRepository.getAppTheme() == AppCompatDelegate.MODE_NIGHT_YES) {
+            colorCloseIconTint = getColor(R.color.color_gray)
+            colorChipBackground = getColor(R.color.color_gray_darkest)
+            colorChipText = Color.WHITE
+        } else {
+            colorCloseIconTint = Color.WHITE
+            colorChipBackground = getColor(R.color.color_primary_light)
+            colorChipText = Color.WHITE
         }
     }
 
@@ -105,9 +127,9 @@ class GroupActivity : AppCompatActivity() {
             isCloseIconVisible = true
             tag = user.id
             isClickable = true
-            closeIconTint = ColorStateList.valueOf(Color.WHITE)
-            chipBackgroundColor = ColorStateList.valueOf(getColor(R.color.color_primary_light))
-            setTextColor(Color.WHITE)
+            closeIconTint = ColorStateList.valueOf(colorCloseIconTint)
+            chipBackgroundColor = ColorStateList.valueOf(colorChipBackground)
+            setTextColor(colorChipText)
         }
         chip.setOnCloseIconClickListener { viewModel.handleRemoveChip(it.tag.toString()) }
         chip_group.addView(chip)
