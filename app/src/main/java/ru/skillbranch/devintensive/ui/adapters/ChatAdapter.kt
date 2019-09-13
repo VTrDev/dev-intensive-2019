@@ -1,7 +1,6 @@
 package ru.skillbranch.devintensive.ui.adapters
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -113,7 +112,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatA
             if (item.avatar == null) {
                 Glide.with(itemView)
                     .clear(iv_avatar_single)
-                //iv_avatar_single.setInitials(item.initials)
+                iv_avatar_single.setInitials(item.initials)
             } else {
                 Glide.with(itemView)
                     .load(item.avatar)
@@ -149,7 +148,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatA
         }
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit) {
-            //iv_avatar_group.setInitials(item.title[0].toString())
+            iv_avatar_group.setInitials(item.title[0].toString())
 
             with(tv_date_group) {
                 visibility = if (item.lastMessageDate != null) View.VISIBLE else View.GONE
