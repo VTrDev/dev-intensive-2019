@@ -49,7 +49,7 @@ class AvatarImageView : ImageView {
 
     private var mTextStartXPoint = 0f
     private var mTextStartYPoint = 0f
-    private var mTextSizePercentage = 33f
+    private var mTextSizePercentage = 40f
 
     private var mBitmap: Bitmap? = null
     private var mBitmapShader: BitmapShader? = null
