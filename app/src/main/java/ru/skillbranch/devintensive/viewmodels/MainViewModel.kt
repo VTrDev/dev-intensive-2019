@@ -27,9 +27,8 @@ class MainViewModel : ViewModel() {
             val totalMessageCount = archivedChats.sumBy { it.messages.count() }
             chatItemsResult.add(
                 archivedChats
-                    .sortedBy { it.lastMessageDate() }
-                    .map { it.toChatItem() }
-                    .filter { it.messageCount > 0 }[0]
+                    .sortedByDescending { it.lastMessageDate() }
+                    .map { it.toChatItem() } [0]
                     .copy(
                         messageCount = totalMessageCount,
                         chatType = ChatType.ARCHIVE
@@ -55,7 +54,7 @@ class MainViewModel : ViewModel() {
             val chats = chatItems.value!!
 
             result.value = if (queryStr.isEmpty()) chats
-            else chats.filter { it.title.contains(queryStr, true) }
+            else chats.filter { it.title.contains(queryStr, true) && it.chatType != ChatType.ARCHIVE }
         }
 
         result.addSource(chatItems) { filterF.invoke() }
