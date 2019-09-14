@@ -51,8 +51,9 @@ class UserAdapter(val listener: (UserItem) -> Unit) : RecyclerView.Adapter<UserA
                     .into(iv_avatar_user)
             } else {
                 Glide.with(itemView).clear(iv_avatar_user)
-                iv_avatar_user.setInitials(user.initials ?: "??")
             }
+            iv_avatar_user.setInitials(user.initials ?: "??")
+
             sv_indicator.visibility = if (user.isOnline) View.VISIBLE else View.GONE
             tv_user_name.text = user.fullName
             tv_last_activity.text = user.lastActivity
