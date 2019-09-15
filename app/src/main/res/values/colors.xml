@@ -17,4 +17,6 @@
     <color name="color_divider_light">#1FFFFFFF</color>
     <color name="color_count_badge">#581F99</color>
     <color name="color_online_indicator">#4FD149</color>
+
+    <color name="color_snackbar_text">#FFFFFF</color>
 </resources>
