@@ -101,11 +101,11 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatA
 
     inner class SingleViewHolder(convertView: View) : ChatItemViewHolder(convertView), ItemTouchViewHolder {
         override fun onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY)
+            itemView.setBackgroundColor(itemView.resources.getColor(R.color.color_bg_rv_item_selected, itemView.context.theme))
         }
 
         override fun onItemCleared() {
-            itemView.setBackgroundColor(Color.WHITE)
+            itemView.setBackgroundColor(itemView.resources.getColor(R.color.color_bg_rv_item, itemView.context.theme))
         }
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit) {
@@ -144,7 +144,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) : RecyclerView.Adapter<ChatA
         }
 
         override fun onItemCleared() {
-            itemView.setBackgroundColor(Color.WHITE)
+            itemView.setBackgroundColor(itemView.resources.getColor(R.color.color_bg_rv_item, itemView.context.theme))
         }
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit) {

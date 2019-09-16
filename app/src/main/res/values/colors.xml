@@ -19,4 +19,7 @@
     <color name="color_online_indicator">#4FD149</color>
 
     <color name="color_snackbar_text">#FFFFFF</color>
+    <color name="color_bg_under_item">#1C0E42</color>
+    <color name="color_bg_rv_item_selected">#ECECEC</color>
+    <color name="color_bg_rv_item">#FFFFFF</color>
 </resources>

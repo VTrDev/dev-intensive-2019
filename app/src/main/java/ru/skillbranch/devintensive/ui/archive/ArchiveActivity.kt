@@ -85,7 +85,7 @@ class ArchiveActivity : AppCompatActivity() {
             }
         }
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        val touchCallback = ChatItemTouchHelperCallback(chatAdapter) { chatItem ->
+        val touchCallback = ChatItemTouchHelperCallback(chatAdapter, this.getDrawable(R.drawable.ic_unarchive_black_24dp)) { chatItem ->
             viewModel.restoreFromArchive(chatItem.id)
             Snackbar.make(rv_archive_list, "Восстановить чат с ${chatItem.title} из архива?", Snackbar.LENGTH_LONG)
                 .setBackground(this.getDrawable(R.drawable.bg_snackbar))

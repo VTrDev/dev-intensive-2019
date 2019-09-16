@@ -1,9 +1,8 @@
 package ru.skillbranch.devintensive.ui.adapters
 
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.RectF
+import android.animation.ArgbEvaluator
+import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +11,13 @@ import ru.skillbranch.devintensive.models.data.ChatItem
 
 class ChatItemTouchHelperCallback(
     val adapter: ChatAdapter,
+    val itemIcon: Drawable? = null,
     val swipeListener: (ChatItem) -> Unit
 ): ItemTouchHelper.Callback() {
     private val bgRect = RectF()
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconBounds = Rect()
+    private val colorEvaluator = ArgbEvaluator()
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         return if (viewHolder is ItemTouchViewHolder) {
@@ -61,14 +62,16 @@ class ChatItemTouchHelperCallback(
     ) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             val itemView = viewHolder.itemView
-            drawBackgroud(canvas, itemView, dX)
-            drawIcon(canvas, itemView, dX)
+            drawBackground(canvas, itemView, dX)
+            if (itemIcon != null) {
+                drawIcon(canvas, itemView, dX)
+            }
         }
         super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 
     private fun drawIcon(canvas: Canvas, itemView: View, dX: Float) {
-        val icon = itemView.resources.getDrawable(R.drawable.ic_archive_black_24dp, itemView.context.theme)
+        val icon = itemIcon!!
         val iconSize = itemView.resources.getDimensionPixelSize(R.dimen.icon_size)
         val space = itemView.resources.getDimensionPixelSize(R.dimen.spacing_normal_16)
 
@@ -84,7 +87,7 @@ class ChatItemTouchHelperCallback(
         icon.draw(canvas)
     }
 
-    private fun drawBackgroud(canvas: Canvas, itemView: View, dX: Float) {
+    private fun drawBackground(canvas: Canvas, itemView: View, dX: Float) {
         with(bgRect) {
             left = itemView.left.toFloat() // dX ???
             top = itemView.top.toFloat()
@@ -92,9 +95,12 @@ class ChatItemTouchHelperCallback(
             bottom = itemView.bottom.toFloat()
         }
 
-        with(bgPaint) {
-            color = itemView.resources.getColor(R.color.color_primary_dark, itemView.context.theme)
-        }
+        val viewHalfWidth = itemView.width / 2
+        bgPaint.color = colorEvaluator.evaluate(
+            if (dX > -viewHalfWidth) 0f else -(dX + viewHalfWidth) / viewHalfWidth,
+            itemView.resources.getColor(R.color.color_bg_under_item, itemView.context.theme),
+            Color.WHITE
+        ) as Int
 
         canvas.drawRect(bgRect, bgPaint)
     }

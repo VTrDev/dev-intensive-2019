@@ -15,7 +15,6 @@
 
         <item name="colorActionBarBackground">@color/color_gray_darkest2</item>
         <item name="colorPrimaryBackground">@android:color/black</item>
-        <item name="colorChatItemBackground">@color/color_gray_darkest</item>
         <item name="colorChatItemSwipeBackground">@color/color_accent_night</item>
         <item name="colorChatIndicator">@color/color_accent_night</item>
         <item name="colorChatItemTitle">@android:color/white</item>

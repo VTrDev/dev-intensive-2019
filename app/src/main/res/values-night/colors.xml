@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_snackbar_text">#121212</color>
+    <color name="color_bg_under_item">#2196F3</color>
+    <color name="color_bg_rv_item_selected">#272727</color>
+    <color name="color_bg_rv_item">#1D1D1D</color>
 </resources>
