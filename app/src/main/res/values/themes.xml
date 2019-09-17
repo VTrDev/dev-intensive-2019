@@ -17,13 +17,13 @@
 
         <item name="colorActionBarBackground">@color/color_primary</item>
         <item name="colorPrimaryBackground">@android:color/white</item>
-        <item name="colorChatItemBackground">@android:color/white</item>
         <item name="colorChatItemSwipeBackground">@color/color_primary_dark</item>
         <item name="colorChatIndicator">@color/color_online_indicator</item>
         <item name="colorChatItemTitle">@color/color_primary</item>
         <item name="colorChatItemText">@color/color_gray_dark</item>
         <item name="colorChatItemMessageCount">@android:color/white</item>
         <item name="colorChatItemMessageCountBadge">@color/color_count_badge</item>
+        <item name="colorGroupItemCheckIcon">@color/color_primary</item>
 
     </style>
 

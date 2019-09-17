@@ -22,4 +22,7 @@
     <color name="color_bg_under_item">#1C0E42</color>
     <color name="color_bg_rv_item_selected">#ECECEC</color>
     <color name="color_bg_rv_item">#FFFFFF</color>
+    <color name="color_chip_icon_tint">#FFFFFF</color>
+    <color name="color_chip_background">#473770</color>
+    <color name="color_chip_text">#FFFFFF</color>
 </resources>

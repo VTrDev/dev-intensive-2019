@@ -4,4 +4,7 @@
     <color name="color_bg_under_item">#2196F3</color>
     <color name="color_bg_rv_item_selected">#272727</color>
     <color name="color_bg_rv_item">#1D1D1D</color>
+    <color name="color_chip_icon_tint">#9CA9BA</color>
+    <color name="color_chip_background">#1D1D1D</color>
+    <color name="color_chip_text">#FFFFFF</color>
 </resources>

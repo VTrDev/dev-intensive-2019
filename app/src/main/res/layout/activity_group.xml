@@ -27,20 +27,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:background="?attr/colorPrimaryBackground">
+            android:layout_marginTop="?attr/actionBarSize">
 
-        <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group"
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/spacing_normal_16"
-                android:paddingRight="@dimen/spacing_normal_16"
-                android:layout_marginTop="@dimen/spacing_small_8"
-                android:layout_marginBottom="@dimen/spacing_small_8"
-                android:visibility="gone">
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimaryBackground">
 
-        </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/spacing_normal_16"
+                    android:paddingRight="@dimen/spacing_normal_16"
+                    android:layout_marginTop="@dimen/spacing_small_8"
+                    android:layout_marginBottom="@dimen/spacing_small_8"
+                    app:chipSpacing="@dimen/spacing_small_8"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone">
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_user_list"
