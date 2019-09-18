@@ -14,7 +14,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -25,6 +24,7 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
 import ru.skillbranch.devintensive.ui.adapters.UserAdapter
 import ru.skillbranch.devintensive.ui.custom.AvatarPlaceholder
+import ru.skillbranch.devintensive.ui.custom.CustomDividerItemDecoration
 import ru.skillbranch.devintensive.viewmodels.GroupViewModel
 
 
@@ -78,11 +78,16 @@ class GroupActivity : AppCompatActivity() {
 
     private fun initViews() {
         usersAdapter = UserAdapter { viewModel.handleSelectedItem(it.id) }
-        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         with(rv_user_list) {
             adapter = usersAdapter
             layoutManager = LinearLayoutManager(this@GroupActivity)
-            addItemDecoration(divider)
+            addItemDecoration(
+                CustomDividerItemDecoration(
+                    this@GroupActivity,
+                    resources.getDimension(R.dimen.spacing_maximum_72).toInt(),
+                    0
+                )
+            )
         }
 
         fab.setOnClickListener {

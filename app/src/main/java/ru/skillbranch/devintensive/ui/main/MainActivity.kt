@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -19,6 +18,7 @@ import ru.skillbranch.devintensive.models.data.ChatType
 import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
 import ru.skillbranch.devintensive.ui.adapters.ChatItemTouchHelperCallback
 import ru.skillbranch.devintensive.ui.archive.ArchiveActivity
+import ru.skillbranch.devintensive.ui.custom.CustomDividerItemDecoration
 import ru.skillbranch.devintensive.ui.group.GroupActivity
 import ru.skillbranch.devintensive.viewmodels.MainViewModel
 
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter, this.getDrawable(R.drawable.ic_archive_black_24dp)) { chatItem ->
             viewModel.addToArchive(chatItem.id)
             Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${chatItem.title} в архив?", Snackbar.LENGTH_LONG)
@@ -89,7 +89,11 @@ class MainActivity : AppCompatActivity() {
         with(rv_chat_list) {
             adapter = chatAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
-            addItemDecoration(divider)
+            addItemDecoration(CustomDividerItemDecoration(
+                this@MainActivity,
+                resources.getDimension(R.dimen.spacing_maximum_72).toInt(),
+                0
+            ))
         }
 
         fab.setOnClickListener{

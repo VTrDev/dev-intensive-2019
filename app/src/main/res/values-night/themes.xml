@@ -22,6 +22,7 @@
         <item name="colorChatItemMessageCount">@android:color/white</item>
         <item name="colorChatItemMessageCountBadge">@color/color_gray_dark</item>
         <item name="colorGroupItemCheckIcon">@color/color_accent_night</item>
+        <item name="colorRVItemsDivider">@color/color_divider_light</item>
 
     </style>
 

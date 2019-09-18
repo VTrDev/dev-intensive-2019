@@ -30,4 +30,5 @@
     <attr name="colorChatItemMessageCount" format="reference"/>
     <attr name="colorChatItemMessageCountBadge" format="reference"/>
     <attr name="colorGroupItemCheckIcon" format="reference"/>
+    <attr name="colorRVItemsDivider" format="reference"/>
 </resources>
