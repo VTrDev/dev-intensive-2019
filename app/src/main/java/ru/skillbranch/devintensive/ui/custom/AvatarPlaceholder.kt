@@ -9,7 +9,8 @@ class AvatarPlaceholder(
     textColor: Int = Color.WHITE,
     backgroundColor: Int = Color.BLUE,
     val width: Int = 10,
-    val height: Int = 10
+    val height: Int = 10,
+    val isRandomBackgroundColor: Boolean = false
 ) : Drawable() {
 
     private val textPaint: Paint = Paint()
@@ -18,10 +19,20 @@ class AvatarPlaceholder(
 
     private var textStartXPoint = 0f
     private var textStartYPoint = 0f
-    private var textSizePercentage = 33f
+    private var textSizePercentage = 40f
+
+    private val mBackgroundColors = arrayOf(
+        "#7BC862",
+        "#E17076",
+        "#FAA774",
+        "#6EC9CB",
+        "#65AADD",
+        "#A695E7",
+        "#EE7AAE"
+    )
 
     init {
-        avatarText = avatarText ?: ""
+        avatarText = avatarText ?: "??"
 
         textPaint.isAntiAlias = true
         textPaint.color = textColor
@@ -29,7 +40,9 @@ class AvatarPlaceholder(
 
         backgroundPaint.isAntiAlias = true
         backgroundPaint.style = Paint.Style.FILL
-        backgroundPaint.color = backgroundColor
+        backgroundPaint.color =
+            if (!isRandomBackgroundColor) backgroundColor
+            else calculateColor(avatarText!!)
     }
 
     override fun draw(canvas: Canvas) {
@@ -55,6 +68,17 @@ class AvatarPlaceholder(
     override fun setColorFilter(colorFilter: ColorFilter?) {
         textPaint.colorFilter = colorFilter
         backgroundPaint.colorFilter = colorFilter
+    }
+
+    private fun calculateColor(str: String): Int {
+        var sum = 0
+        for (char in str.toCharArray()) {
+            sum += char.toInt()
+        }
+
+        return Color.parseColor(
+            mBackgroundColors[sum % mBackgroundColors.size]
+        )
     }
 
     private fun calculateTextStartXPoint(): Float {

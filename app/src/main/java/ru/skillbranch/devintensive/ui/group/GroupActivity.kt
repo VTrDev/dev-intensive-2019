@@ -1,23 +1,32 @@
 package ru.skillbranch.devintensive.ui.group
 
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_group.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
 import ru.skillbranch.devintensive.ui.adapters.UserAdapter
+import ru.skillbranch.devintensive.ui.custom.AvatarPlaceholder
 import ru.skillbranch.devintensive.viewmodels.GroupViewModel
+
 
 class GroupActivity : AppCompatActivity() {
 
@@ -108,6 +117,28 @@ class GroupActivity : AppCompatActivity() {
             chipBackgroundColor = ColorStateList.valueOf(resources.getColor(R.color.color_chip_background, theme))
             setTextColor(resources.getColor(R.color.color_chip_text, theme))
         }
+
+        val iconSize = chip.chipIconSize.toInt()
+        val avatarDrawable = RoundedBitmapDrawableFactory.create(this.resources,
+                AvatarPlaceholder(user.initials, width = iconSize, height = iconSize,
+                    isRandomBackgroundColor = true).toBitmap())
+        avatarDrawable.cornerRadius = chip.chipIconSize
+        chip.chipIcon = avatarDrawable
+
+        Glide.with(this)
+            .asBitmap()
+            .load(user.avatar)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    val iconDrawable = RoundedBitmapDrawableFactory
+                        .create(this@GroupActivity.resources, resource)
+                    iconDrawable.cornerRadius = resource.width.toFloat()
+                    chip.chipIcon = iconDrawable
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+                }
+            })
         chip.setOnCloseIconClickListener { viewModel.handleRemoveChip(it.tag.toString()) }
         chip_group.addView(chip)
     }
