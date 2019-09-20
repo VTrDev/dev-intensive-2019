@@ -43,8 +43,9 @@
             tools:text="Когда я проходил интенсив, я мало спал"
             android:textColor="?attr/colorChatItemText"
             android:textSize="14sp"
+            android:ellipsize="end"
             android:layout_toRightOf="@id/tv_message_author_archive"
-            android:layout_toLeftOf="@+id/tv_counter_group"
+            android:layout_toLeftOf="@+id/tv_counter_archive"
             android:layout_marginRight="@dimen/spacing_normal_16"
             android:layout_below="@id/tv_title_archive"
             android:maxLines="1"/>
